@@ -1,0 +1,10 @@
+1711313451.123|Robust - stats|Accepts: http/https 400/1192|client: in-progress 50|done 120, fwd: in progress 10|flit 25%|FreeFds: 100|websockets: in-progress 5|Mem RSS 191780000 KB|app used 100000 KB|totalMem 200000000 KB|TCP Mem 500000 KB|in pressure: N|CPU: all 52%|AVG manager cycle 2500us
+1711313452.456|Robust - stats|Accepts: http/https 450/1250|client: in-progress 55|done 130, fwd: in progress 12|flit 28%|FreeFds: 98|websockets: in-progress 6|Mem RSS 191750000 KB|app used 102000 KB|totalMem 200000000 KB|TCP Mem 520000 KB|in pressure: N|CPU: all 57%|AVG manager cycle 2600us
+1711313453.789|Robust - stats|Accepts: http/https 500/1300|client: in-progress 60|done 140, fwd: in progress 15|flit 30%|FreeFds: 95|websockets: in-progress 7|Mem RSS 191790000 KB|app used 105000 KB|totalMem 200000000 KB|TCP Mem 550000 KB|in pressure: N|CPU: all 63%|AVG manager cycle 2700us
+1711313455.012|crp::OverloadManager|addCandidateTarget|trigger_pct:40.5% deny_pct:20.3%|metrics (cpu:5000ms mem:100000KB reqs:1000)
+1711313456.345|crp::OverloadManager|processMainLoop|runQ:0.125
+1711313457.678|crp::OverloadManager|addCandidateTarget|trigger_pct:45.2% deny_pct:25.7%|metrics (cpu:5500ms mem:110000KB reqs:1100)
+1711313458.901|crp::OverloadManager|processMainLoop|runQ:0.145
+1711313460.234|Robust - stats|Accepts: http/https 550/1350|client: in-progress 65|done 150, fwd: in progress 18|flit 32%|FreeFds: 92|websockets: in-progress 8|Mem RSS 191850000 KB|app used 108000 KB|totalMem 200000000 KB|TCP Mem 580000 KB|in pressure: N|CPU: all 68%|AVG manager cycle 2800us
+1711313462.567|crp::OverloadManager|addCandidateTarget|trigger_pct:50.8% deny_pct:30.2%|metrics (cpu:6000ms mem:120000KB reqs:1200)
+1711313464.890|crp::OverloadManager|processMainLoop|runQ:0.165

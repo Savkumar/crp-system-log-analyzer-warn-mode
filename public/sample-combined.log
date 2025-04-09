@@ -1,0 +1,40 @@
+1711059051.2 |Robust - stats|Accepts: http/https 350/1350 done 1249, client: in-progress 101, fwd: in progress 10, flit 4%, FreeFds: 1250, websockets: in-progress 3 | Mem RSS 182955540 KB app used 182000457 KB totalMem 182962500 KB TCP Mem 4538 KB | in pressure: N | CPU: all 68% | AVG manager cycle 300us  | gc 0.02ms
+1711059052.3 |Robust - stats|Accepts: http/https 355/1365 done 1250, client: in-progress 105, fwd: in progress 13, flit 5%, FreeFds: 1245, websockets: in-progress 5 | Mem RSS 182960765 KB app used 182001543 KB totalMem 182962500 KB TCP Mem 4610 KB | in pressure: N | CPU: all 65% | AVG manager cycle 310us  | gc 0.03ms
+1711059053.4 |Robust - stats|Accepts: http/https 365/1380 done 1252, client: in-progress 107, fwd: in progress 14, flit 5%, FreeFds: 1243, websockets: in-progress 6 | Mem RSS 182960765 KB app used 182001600 KB totalMem 182962500 KB TCP Mem 4700 KB | in pressure: N | CPU: all 58% | AVG manager cycle 315us  | gc 0.02ms
+1711059054.2 |Robust - stats|Accepts: http/https 370/1390 done 1254, client: in-progress 110, fwd: in progress 15, flit 6%, FreeFds: 1240, websockets: in-progress 7 | Mem RSS 182962500 KB app used 182001700 KB totalMem 182962500 KB TCP Mem 4800 KB | in pressure: N | CPU: all 52% | AVG manager cycle 320us  | gc 0.02ms
+1711059051.2 |crp::OverloadManager::processMainLoop: runQ:1.52
+1711059052.3 |crp::OverloadManager::processMainLoop: runQ:1.73
+1711059053.4 |crp::OverloadManager::processMainLoop: runQ:1.85
+1711059054.2 |crp::OverloadManager::addCandidateTarget: trigger_pct:75.00% deny_pct:85.00% metrics (cpu:350ms mem:182955540KB reqs:710)
+1711059054.3 |crp::OverloadManager::addCandidateTarget: trigger_pct:75.00% deny_pct:85.00% metrics (cpu:360ms mem:182960765KB reqs:720)
+1711059054.4 |crp::OverloadManager::addCandidateTarget: trigger_pct:75.00% deny_pct:85.00% metrics (cpu:370ms mem:182962500KB reqs:730)
+
+[03-26 17:16:17.710 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=31639344 hits=4248.001265 suspendflag=0 suspendlevel=0
+[03-26 17:16:20.757 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=31217240 hits=4197.551323 suspendflag=0 suspendlevel=0
+[03-26 17:16:23.732 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=31116145 hits=4162.348917 suspendflag=0 suspendlevel=0
+[03-26 17:16:26.769 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=32719225 hits=4246.992261 suspendflag=0 suspendlevel=0
+[03-26 17:16:29.739 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=33179627 hits=4265.592018 suspendflag=0 suspendlevel=0
+[03-26 17:16:32.719 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=31848511 hits=4209.967141 suspendflag=0 suspendlevel=0
+[03-26 17:16:35.754 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=30588764 hits=4244.565158 suspendflag=0 suspendlevel=0
+[03-26 17:16:38.733 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=28278264 hits=4141.548242 suspendflag=0 suspendlevel=0
+[03-26 17:16:41.770 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=27432285 hits=3990.132418 suspendflag=0 suspendlevel=0
+[03-26 17:16:44.741 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=29566242 hits=3891.757665 suspendflag=0 suspendlevel=0
+[03-26 17:16:47.780 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=31492435 hits=3913.352572 suspendflag=0 suspendlevel=0
+[03-26 17:16:50.749 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=32874568 hits=4033.284229 suspendflag=0 suspendlevel=0
+[03-26 17:16:53.729 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=33281846 hits=4165.730835 suspendflag=0 suspendlevel=0
+[03-26 17:16:56.766 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=33046782 hits=4219.382457 suspendflag=0 suspendlevel=0
+[03-26 17:16:59.737 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=32543673 hits=4251.739826 suspendflag=0 suspendlevel=0
+[03-26 17:17:02.775 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=32879235 hits=4260.282647 suspendflag=0 suspendlevel=0
+[03-26 17:17:05.746 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=32954328 hits=4259.382946 suspendflag=0 suspendlevel=0
+[03-26 17:17:08.724 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=33425764 hits=4261.273845 suspendflag=0 suspendlevel=0
+[03-26 17:17:11.761 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=34925387 hits=4305.673954 suspendflag=1 suspendlevel=1
+[03-26 17:17:14.732 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=35728475 hits=4330.284736 suspendflag=1 suspendlevel=1
+[03-26 17:17:17.770 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=36128394 hits=4352.392847 suspendflag=1 suspendlevel=2
+[03-26 17:17:20.741 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=35893274 hits=4340.283746 suspendflag=1 suspendlevel=2
+[03-26 17:17:23.720 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=35273648 hits=4326.382746 suspendflag=1 suspendlevel=1
+[03-26 17:17:26.758 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=34162387 hits=4301.283746 suspendflag=0 suspendlevel=0
+[03-26 17:17:29.728 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=33428954 hits=4273.283947 suspendflag=0 suspendlevel=0
+[03-26 17:17:32.766 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=32937462 hits=4256.384785 suspendflag=0 suspendlevel=0
+[03-26 17:17:35.737 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=32483647 hits=4228.283746 suspendflag=0 suspendlevel=0
+[03-26 17:17:38.716 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=32293845 hits=4209.283746 suspendflag=0 suspendlevel=0
+[03-26 17:17:41.752 I write_dnsp.cpp:2453 read_shm[W] dnsp_key=W flyteload=32047362 hits=4195.283746 suspendflag=0 suspendlevel=0

@@ -1,0 +1,43 @@
+/* Hide any global loading circles or spinners during large file processing */
+.large-file-active .App-logo,
+.large-file-active [class*='spinner'],
+.large-file-active [class*='loading'],
+.large-file-active svg[class*='circle'],
+.large-file-active div[style*='circle'],
+.large-file-active svg,
+.large-file-active svg circle,
+.large-file-active circle,
+/* Target React's default loader styles */
+.large-file-active > div > svg,
+.large-file-active > div > div:not(.large-file-progress-container) {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Target various react spinners */
+.large-file-active [class*="spinner"],
+.large-file-active [class*="Spinner"],
+.large-file-active [class*="loading"],
+.large-file-active [class*="Loading"] {
+  display: none !important;
+}
+
+/* Add a catch-all for anything that might be a circle in the DOM */
+.large-file-active *:not(.large-file-progress-container):not(.large-file-progress-container *) {
+  animation: none !important;
+}
+
+/* Ensure our progress indicators are always visible */
+.large-file-progress-container {
+  z-index: 1000;
+  position: relative;
+}
+
+/* Make sure the large file container is clearly visible */
+.large-file-active .large-file-progress-container,
+.large-file-active .large-file-progress-container * {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
