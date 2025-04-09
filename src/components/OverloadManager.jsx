@@ -1,7 +1,7 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { prepareTimeSeriesData, prepareOverloadTimeSeriesData, getMetricStats } from '../utils/chartUtils';
-// StatCard no longer used after converting to table format
+import { prepareOverloadTimeSeriesDataWithFixedRange, getMetricStats } from '../utils/chartUtils';
+// Removed unused imports
 
 const OverloadManager = ({ logData }) => {
   if (!logData || !logData.addCandidateTargets.length) return <div>No data available</div>;
@@ -9,26 +9,32 @@ const OverloadManager = ({ logData }) => {
   // Define NA value without quotes
   const NA = "N/A";
 
-  // Prepare data for charts
-  const targetData = prepareOverloadTimeSeriesData(logData.addCandidateTargets, ['triggerPct', 'denyPct', 'rule']);
-  const metricsData = prepareOverloadTimeSeriesData(
+  // Define fixed time range for OverloadManager analysis
+  const fixedTimeRange = "2025-04-09 17:24:11 to 2025-04-09 18:05:50";
+  
+  // Prepare data for charts with the fixed time range
+  const targetData = prepareOverloadTimeSeriesDataWithFixedRange(
+    logData.addCandidateTargets, 
+    ['triggerPct', 'denyPct', 'rule'],
+    fixedTimeRange
+  );
+  
+  const metricsData = prepareOverloadTimeSeriesDataWithFixedRange(
     logData.addCandidateTargets, 
     [
       { name: 'cpuMs', path: 'metrics.cpu' },
       { name: 'memKB', path: 'metrics.mem' },
       { name: 'reqs', path: 'metrics.reqs' }
-    ]
+    ],
+    fixedTimeRange
   );
-  // Prepare process loop data for potential future use
-  // const processLoopData = prepareTimeSeriesData(logData.processMainLoops, ['runQ', 'triggerReason', 'triggerValue']);
-
   // Calculate statistics
   const triggerStats = getMetricStats(logData.addCandidateTargets, 'triggerPct');
   const denyStats = getMetricStats(logData.addCandidateTargets, 'denyPct');
   const cpuStats = getMetricStats(logData.addCandidateTargets, { path: 'metrics.cpu' });
   const memStats = getMetricStats(logData.addCandidateTargets, { path: 'metrics.mem' });
   const reqsStats = getMetricStats(logData.addCandidateTargets, { path: 'metrics.reqs' });
-  const runQStats = getMetricStats(logData.processMainLoops, 'runQ');
+  // Removed unused runQStats
 
   // Get unique rules for rule distribution analysis
   const rules = {};
@@ -75,6 +81,9 @@ const OverloadManager = ({ logData }) => {
   return (
     <div className="mb-6">
       <h2 className="text-xl font-semibold mb-4">OverloadManager Analysis</h2>
+      <div className="text-sm text-gray-500 mb-4">
+        Time Range: {fixedTimeRange} (UTC)
+      </div>
 
       {/* All sections in a horizontal row */}
       <div className="bg-white p-4 rounded-lg shadow-md border border-gray-300 mb-6">
@@ -201,11 +210,30 @@ const OverloadManager = ({ logData }) => {
         <ResponsiveContainer width="100%" height={250}>
           <LineChart data={targetData}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="formattedTime" tick={{ fontSize: 12 }} angle={-45} textAnchor="end" height={80} dy={20} />
+            <XAxis 
+              dataKey="formattedTime" 
+              tick={{ fontSize: 12 }} 
+              angle={-45} 
+              textAnchor="end" 
+              height={80} 
+              dy={20}
+              interval="preserveStartEnd"
+              minTickGap={10}
+            />
             <YAxis domain={[0, Math.max(100, triggerStats.max * 1.1)]} />
-            <Tooltip formatter={(value) => [`${value.toFixed(1)}%`]} />
+            <Tooltip 
+              formatter={(value) => value !== null ? [`${value.toFixed(1)}%`] : ["No data"]}
+              labelFormatter={(label) => label}
+            />
             <Legend />
-            <Line type="monotone" dataKey="triggerPct" stroke="#ed8936" name="Trigger %" dot={false} />
+            <Line 
+              type="monotone" 
+              dataKey="triggerPct" 
+              stroke="#ed8936" 
+              name="Trigger %" 
+              dot={false}
+              connectNulls={true}
+            />
           </LineChart>
         </ResponsiveContainer>
       </div>
@@ -216,11 +244,30 @@ const OverloadManager = ({ logData }) => {
         <ResponsiveContainer width="100%" height={250}>
           <LineChart data={targetData}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="formattedTime" tick={{ fontSize: 12 }} angle={-45} textAnchor="end" height={80} dy={20} />
+            <XAxis 
+              dataKey="formattedTime" 
+              tick={{ fontSize: 12 }} 
+              angle={-45} 
+              textAnchor="end" 
+              height={80} 
+              dy={20}
+              interval="preserveStartEnd"
+              minTickGap={10}
+            />
             <YAxis domain={[0, Math.max(100, denyStats.max * 1.1)]} />
-            <Tooltip formatter={(value) => [`${value.toFixed(1)}%`]} />
+            <Tooltip 
+              formatter={(value) => value !== null ? [`${value.toFixed(1)}%`] : ["No data"]}
+              labelFormatter={(label) => label}
+            />
             <Legend />
-            <Line type="monotone" dataKey="denyPct" stroke="#e53e3e" name="Deny %" dot={false} />
+            <Line 
+              type="monotone" 
+              dataKey="denyPct" 
+              stroke="#e53e3e" 
+              name="Deny %" 
+              dot={false}
+              connectNulls={true}
+            />
           </LineChart>
         </ResponsiveContainer>
       </div>
@@ -231,11 +278,30 @@ const OverloadManager = ({ logData }) => {
         <ResponsiveContainer width="100%" height={250}>
           <LineChart data={metricsData}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="formattedTime" tick={{ fontSize: 12 }} angle={-45} textAnchor="end" height={80} dy={20} />
+            <XAxis 
+              dataKey="formattedTime" 
+              tick={{ fontSize: 12 }} 
+              angle={-45} 
+              textAnchor="end" 
+              height={80} 
+              dy={20}
+              interval="preserveStartEnd"
+              minTickGap={10}
+            />
             <YAxis domain={[0, cpuStats.max * 1.1]} />
-            <Tooltip formatter={(value) => [`${value} ms`]} />
+            <Tooltip 
+              formatter={(value) => value !== null ? [`${value} ms`] : ["No data"]}
+              labelFormatter={(label) => label}
+            />
             <Legend />
-            <Line type="monotone" dataKey="cpuMs" stroke="#3182ce" name="CPU (ms)" dot={false} />
+            <Line 
+              type="monotone" 
+              dataKey="cpuMs" 
+              stroke="#3182ce" 
+              name="CPU (ms)" 
+              dot={false}
+              connectNulls={true}
+            />
           </LineChart>
         </ResponsiveContainer>
       </div>
@@ -246,11 +312,30 @@ const OverloadManager = ({ logData }) => {
         <ResponsiveContainer width="100%" height={250}>
           <LineChart data={metricsData}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="formattedTime" tick={{ fontSize: 12 }} angle={-45} textAnchor="end" height={80} dy={20} />
+            <XAxis 
+              dataKey="formattedTime" 
+              tick={{ fontSize: 12 }} 
+              angle={-45} 
+              textAnchor="end" 
+              height={80} 
+              dy={20}
+              interval="preserveStartEnd"
+              minTickGap={10}
+            />
             <YAxis domain={[0, memStats.max * 1.1]} />
-            <Tooltip formatter={(value) => [`${value} KB`]} />
+            <Tooltip 
+              formatter={(value) => value !== null ? [`${value} KB`] : ["No data"]}
+              labelFormatter={(label) => label}
+            />
             <Legend />
-            <Line type="monotone" dataKey="memKB" stroke="#38a169" name="Memory (KB)" dot={false} />
+            <Line 
+              type="monotone" 
+              dataKey="memKB" 
+              stroke="#38a169" 
+              name="Memory (KB)" 
+              dot={false}
+              connectNulls={true}
+            />
           </LineChart>
         </ResponsiveContainer>
       </div>
@@ -261,14 +346,33 @@ const OverloadManager = ({ logData }) => {
         <ResponsiveContainer width="100%" height={250}>
           <LineChart data={metricsData}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="formattedTime" tick={{ fontSize: 12 }} angle={-45} textAnchor="end" height={80} dy={20} />
+            <XAxis 
+              dataKey="formattedTime" 
+              tick={{ fontSize: 12 }} 
+              angle={-45} 
+              textAnchor="end" 
+              height={80} 
+              dy={20}
+              interval="preserveStartEnd"
+              minTickGap={10}
+            />
             <YAxis domain={[0, reqsStats.max * 1.1]} />
-            <Tooltip />
+            <Tooltip 
+              formatter={(value) => value !== null ? [`${value}`] : ["No data"]}
+              labelFormatter={(label) => label}
+            />
             <Legend />
-            <Line type="monotone" dataKey="reqs" stroke="#805ad5" name="Requests" dot={false} />
+            <Line 
+              type="monotone" 
+              dataKey="reqs" 
+              stroke="#805ad5" 
+              name="Requests" 
+              dot={false}
+              connectNulls={true}
+            />
           </LineChart>
         </ResponsiveContainer>
-      </div>    
+      </div>
 
       {/* Raw data table */}
       <div className="bg-white p-4 rounded-lg shadow mb-6">
